@@ -18,6 +18,7 @@ void usage()
   printf("usage:\n");
   printf("vidplay FILE.vhi : ");
   printf("Play a video\n");
+  printf("\n\nCode : Jede (jede@oric.org)\n");
   return;
 }
 
