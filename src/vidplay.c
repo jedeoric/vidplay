@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "version.h"
+
 extern void play();
 
 extern void hires();
@@ -10,7 +12,7 @@ unsigned char help_opt=0;
 
 void version()
 {
-  printf("vidplay 0.0.2\n");
+  printf("vidplay %s\n",VERSION);
 }
 
 void usage()
@@ -18,10 +20,11 @@ void usage()
   printf("usage:\n");
   printf("vidplay FILE.vhi : ");
   printf("Play a video\n");
+  printf("--help\n");
+  printf("--version\n");
   printf("\n\nCode : Jede (jede@oric.org)\n");
   return;
 }
-
 
 unsigned char getopts(char *arg)
 {
@@ -42,7 +45,6 @@ unsigned char getopts(char *arg)
   return 1;
   
 }
-
 
 int main(int argc,char *argv[])
 {
@@ -67,11 +69,11 @@ int main(int argc,char *argv[])
         if (found_a_folder_in_arg_found==0) 
             found_a_folder_in_arg_found=1;
         else
-          {
+        {
           // here we found 2 folders on the command line
           usage();
           return 1;
-          }
+        }
       }
     }
   }

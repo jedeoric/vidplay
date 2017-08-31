@@ -19,7 +19,7 @@ read
   lda #>format
   sta PTR_READ_DEST+1	
 
-  lda #$3 ; read a frame (6KB)
+  lda #$06 ; Load the 3 first bytes : the movie type, and the length of each frames
 
   ldy #$00
   BRK_TELEMON(XFREAD)
@@ -40,10 +40,11 @@ loopme
   rts
 
 format
-  .dsb 1,0
+  .dsb 3,0 ; VHI pattern
+  .dsb 1,0 ; Type : 0 raw
   
 sizeframe
-    .dsb 2,0
+  .dsb 2,0
 
   
 

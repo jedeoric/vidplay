@@ -1,31 +1,54 @@
 @echo off
 
+
+REM Make file version V0.0.4
+
+rem copy from rm
+REM DEFINE VAR 
+SET BINARYFILE=vidplay
 SET PATH=%PATH%;%CC65%
-
 SET ORICUTRON="..\..\..\oricutron\"
-set PATH_VID="usr\share\presto"
+SET VERSION="1.0.0"
 SET ORIGIN_PATH=%CD%
-
-set VERSION="0.0.1"
-
-
+set DESCBIN=Play VHI(Hires video files) FILES
+SET OTHERS_FILES_TO_LINK=..\oric-common\lib\ca65\telestrat\print.s ..\oric-common\lib\ca65\telestrat\returnline.s ..\oric-common\lib\ca65\telestrat\hires.s 
 
 
+REM CREATE FOLDERS
+IF NOT EXIST build\bin mkdir build\bin
+IF NOT EXIST build\usr\share\doc\ mkdir build\usr\share\doc\
+IF NOT EXIST build\usr\share\doc\%BINARYFILE% mkdir build\usr\share\doc\%BINARYFILE%
+IF NOT EXIST build\usr\share\%BINARYFILE% mkdir build\usr\share\%BINARYFILE%
+IF NOT EXIST build\usr\share\man mkdir build\usr\share\man
+IF NOT EXIST build\usr\share\ipkg mkdir build\usr\share\ipkg
 
-%OSDK%\bin\xa.exe -v -R -cc src\vidplay.asm -o release\vidplay.o65
-co65  release\vidplay.o65 
 
 
-cl65 -ttelestrat src/vidplay.c release/vidplay.s  ..\oric-common\lib\ca65\telestrat\hires.s -o release\orix\bin\vidplay 
+echo Compiling %BINARYFILE% ...
+echo #define VERSION %VERSION% > src\version.h
+echo %BINARYFILE%;%VERSION%;%DESCBIN% > src\ipkg\%BINARYFILE%.csv
+copy README.md build\usr\share\doc\%BINARYFILE%\
+copy src\ipkg\%BINARYFILE%.csv build\usr\share\ipkg\
 
+copy src\man\%BINARYFILE%.hlp build\usr\share\man\
 
+copy data\*.vhi build\usr\share\%BINARYFILE%\
 
+%OSDK%\bin\xa.exe -v -R -cc src\%BINARYFILE%.asm -o build\%BINARYFILE%.o65
+co65  build\%BINARYFILE%.o65 
+del /S /F  build\%BINARYFILE%.o65 
+
+cl65 -ttelestrat src/%BINARYFILE%.c build/%BINARYFILE%.s  %OTHERS_FILES_TO_LINK% -o build\bin\%BINARYFILE%
+
+del /S /F   build\%BINARYFILE%.s
 
 
 
 IF "%1"=="NORUN" GOTO End
 
-copy  release\orix\bin\vidplay %ORICUTRON%\usbdrive\bin\vidplay
+copy data\*.* %ORICUTRON%\usbdrive\usr\share\%BINARYFILE%\
+copy src\man\%BINARYFILE%.hlp %ORICUTRON%\usbdrive\usr\share\man\
+copy  build\bin\%BINARYFILE% %ORICUTRON%\usbdrive\bin\%BINARYFILE%
 
 
 cd %ORICUTRON%

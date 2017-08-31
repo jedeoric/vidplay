@@ -1,0 +1,3 @@
+                                                                                 
+  ORIX    1.0    Tool : vidplay     
+  ORIX    1.0    Tool : vidplay                                                     Play vhi files                                                      See/usr/share/vidplayfor vhi samples                                          Syntax :  #vidplay wall60.vhi                                                  Play VHI files                                                                  Examples: vidplay walle60.vhi                                                  Src code : https://github.com/oric-software/vidplay.git

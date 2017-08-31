@@ -19,8 +19,14 @@ modify also make_data.bat in order to generate frame and to generate one file (i
 Each frames are in raw
 
 Format :
-First byte : type 
+0 'V'
+1 'H'
+2 'I'
+3 0 ; Format (0=Raw)
+4 (2 bytes : number of frames 16 bits)
+6 (Size of the frames : 16 bits)
+Fourth : type 
   0 : raw with the next 2 bytes the size of each frames, and all the frames are filled in the file
 
-Example for walle60.vhir, the first byte is "00", the second "$40" and the third "$15", these 2 bytes means that each frames has 6KB length
+Example for walle60.vhi, the first byte is "00", the second "$40" and the third "$15", these 2 bytes means that each frames has 6KB length
 
