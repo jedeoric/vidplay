@@ -17,14 +17,14 @@ cd ..
 
 mkdir release\download\orix\%VERSION%\
 mkdir build\usr\share\man
-xcopy src\man\* build\usr\share\man  /E /Q /Y
-xcopy README.md build\usr\share\doc\file  /E /Q /Y
+xcopy src\man\%BINARY%.hlp build\usr\share\man  /E /Q /Y
+xcopy README.md build\usr\share\doc\%BINARY%\  /E /Q /Y
 
-xcopy data\*.vhi build\usr\share\%BINARY%  /E /Q /Y
+rem xcopy data\*.vhi build\usr\share\%BINARY%  /E /Q /Y
 
 cd build
 
-%PATH_TAR%\tar -cf %BINARY%.tar *
+%PATH_TAR%\tar -cf %BINARY%.tar usr/
 
 cd ..
 

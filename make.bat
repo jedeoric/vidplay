@@ -37,6 +37,7 @@ copy data\*.vhi build\usr\share\%BINARYFILE%\
 %OSDK%\bin\xa.exe -v -R -cc src\%BINARYFILE%.asm -o build\%BINARYFILE%.o65
 co65  build\%BINARYFILE%.o65 
 del /S /F  build\%BINARYFILE%.o65 
+del /S /F  build\%BINARYFILE%.o 
 
 cl65 -ttelestrat src/%BINARYFILE%.c build/%BINARYFILE%.s  %OTHERS_FILES_TO_LINK% -o build\bin\%BINARYFILE%
 
@@ -46,7 +47,7 @@ del /S /F   build\%BINARYFILE%.s
 
 IF "%1"=="NORUN" GOTO End
 
-copy data\*.* %ORICUTRON%\usbdrive\usr\share\%BINARYFILE%\
+copy data\*.vhi %ORICUTRON%\usbdrive\usr\share\%BINARYFILE%\
 copy src\man\%BINARYFILE%.hlp %ORICUTRON%\usbdrive\usr\share\man\
 copy  build\bin\%BINARYFILE% %ORICUTRON%\usbdrive\bin\%BINARYFILE%
 
