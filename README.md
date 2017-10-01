@@ -28,5 +28,5 @@ Format :
 Fourth : type 
   0 : raw with the next 2 bytes the size of each frames, and all the frames are filled in the file
 
-Example for walle60.vhi, the first byte is "00", the second "$40" and the third "$15", these 2 bytes means that each frames has 6KB length
+
 

@@ -105,6 +105,7 @@ if (fp==NULL)
 hires();  
 printf("Playing ... : %s ",argv[1]);  
 play();
+fclose(fp);
   
 	
 }

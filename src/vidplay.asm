@@ -1,6 +1,6 @@
 
 
-#include "../oric-common/include/asm/telemon.h"
+#include "../telemon/src/include/telemon.h"
 #include "../oric-common/include/asm/macro_orix.h"
 ; ----------------------------------------------------------------------------
 
@@ -23,8 +23,11 @@ read
 
   ldy #$00
   BRK_TELEMON(XFREAD)
- 
-  
+ /*
+  ldy number_of_frames+1
+  lda number_of_frames
+  BRK_TELEMON(XDECIM)
+  */
 loopme
   lda #<$a000
   sta PTR_READ_DEST
@@ -35,9 +38,15 @@ loopme
 
   ldy sizeframe+1
   BRK_TELEMON(XFREAD)
-
+/*
+  dec number_of_frames
+  bne next
+  dec number_of_frames+1
+  bpl end
+  */
+next  
   jmp loopme ; never end but loop all the file
-  
+end  
   rts
 .bss
 
@@ -45,7 +54,7 @@ loopme
 format
   .dsb 3,0 ; VHI pattern
   .dsb 1,0 ; Type : 0 raw
-number_of_frames  
+number_of_frames
   .dsb 2,0
 sizeframe
   .dsb 2,0

@@ -26,10 +26,10 @@ IF NOT EXIST build\usr\share\ipkg mkdir build\usr\share\ipkg
 
 echo Compiling %BINARYFILE% ...
 echo #define VERSION %VERSION% > src\version.h
-echo %BINARYFILE%;%VERSION%;%DESCBIN% > src\ipkg\%BINARYFILE%.csv
+
+echo | set /p dummyName=vidplay   1.0.0  Play vhi files > src\ipkg\%BINARYFILE%.csv
 copy README.md build\usr\share\doc\%BINARYFILE%\
 copy src\ipkg\%BINARYFILE%.csv build\usr\share\ipkg\
-
 copy src\man\%BINARYFILE%.hlp build\usr\share\man\
 
 copy data\*.vhi build\usr\share\%BINARYFILE%\
@@ -50,7 +50,7 @@ IF "%1"=="NORUN" GOTO End
 copy data\*.vhi %ORICUTRON%\usbdrive\usr\share\%BINARYFILE%\
 copy src\man\%BINARYFILE%.hlp %ORICUTRON%\usbdrive\usr\share\man\
 copy  build\bin\%BINARYFILE% %ORICUTRON%\usbdrive\bin\%BINARYFILE%
-
+copy src\ipkg\%BINARYFILE%.csv %ORICUTRON%\usbdrive\usr\share\ipkg\
 
 cd %ORICUTRON%
 OricutronV4 -mt

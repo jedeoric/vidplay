@@ -24,7 +24,7 @@ rem xcopy data\*.vhi build\usr\share\%BINARY%  /E /Q /Y
 
 cd build
 
-%PATH_TAR%\tar -cf %BINARY%.tar usr/
+%PATH_TAR%\tar -cf %BINARY%.tar usr/ bin/
 
 cd ..
 
