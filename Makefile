@@ -2,20 +2,22 @@ AS=xa
 CC=cl65
 CO=co65
 
+CFLAGS=-ttelestrat
+
 PROGRAM=vidplay
 
-LDFILES=$(PROGRAM)_cc65.s
-SOURCE=src/$(PROGRAM).c
+LDFILES=src/$(PROGRAM)_cc65.s
+SOURCE=src/vidplay.c
 ASFLAGS=-R -v -cc 
 
 
-SOURCE=main.s
-ASFLAGS=-C -W -e error.txt -l xa_labels.txt -DTARGET_TELEMON
+SOURCE=$(PROGRAM)
+
 
 vidplay.o:  src/$(PROGRAM).asm
 	$(AS)  $(ASFLAGS) src/$(PROGRAM).asm -o src/$(PROGRAM).o
 	$(CO) src/$(PROGRAM).o -o src/$(PROGRAM)_cc65.s
-	$(CC) $(CFLAGS) -o $(PROGRAM) $(LDFILES) $(SOURCE)
+	$(CC) $(CFLAGS) -o $(PROGRAM) $(LDFILES) src/vidplay.c
 
 
 

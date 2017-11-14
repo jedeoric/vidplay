@@ -34,10 +34,13 @@ copy src\man\%BINARYFILE%.hlp build\usr\share\man\
 
 copy data\*.vhi build\usr\share\%BINARYFILE%\
 
-%OSDK%\bin\xa.exe -v -R -cc src\%BINARYFILE%.asm -o build\%BINARYFILE%.o65
-co65  build\%BINARYFILE%.o65 
 del /S /F  build\%BINARYFILE%.o65 
 del /S /F  build\%BINARYFILE%.o 
+
+%OSDK%\bin\xa.exe -R -cc src\%BINARYFILE%.asm -o build\%BINARYFILE%.o65
+co65  build\%BINARYFILE%.o65 -o build\%BINARYFILE%.s
+rem $(CO) src/$(PROGRAM).o -o src/$(PROGRAM)_cc65.s
+
 
 cl65 -ttelestrat src/%BINARYFILE%.c build/%BINARYFILE%.s  %OTHERS_FILES_TO_LINK% -o build\bin\%BINARYFILE%
 
@@ -53,7 +56,7 @@ copy  build\bin\%BINARYFILE% %ORICUTRON%\usbdrive\bin\%BINARYFILE%
 copy src\ipkg\%BINARYFILE%.csv %ORICUTRON%\usbdrive\usr\share\ipkg\
 
 cd %ORICUTRON%
-OricutronV4 -mt
+OricutronV6 -mt
 cd %ORIGIN_PATH%
 :End
 

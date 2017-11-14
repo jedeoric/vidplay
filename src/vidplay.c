@@ -5,7 +5,7 @@
 
 extern void play();
 
-extern void hires();
+
 
 unsigned char version_opt=0;
 unsigned char help_opt=0;
@@ -102,7 +102,10 @@ if (fp==NULL)
   return 0;
 }
 
-hires();  
+tgi_install (tgi_static_stddrv);
+
+tgi_init ();
+tgi_clear ();
 printf("Playing ... : %s ",argv[1]);  
 play();
 fclose(fp);
