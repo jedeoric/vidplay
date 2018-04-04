@@ -25,11 +25,14 @@ vidplay.o:  src/$(PROGRAM).asm
 test:
 	mkdir -p build/usr/bin/
 	mkdir -p build/usr/share/man
-	mkdir -p build/usr/share/ipkg  
+	mkdir -p build/usr/share/ipkg
+	mkdir -p build/usr/share/$(PROGRAM)
+	mkdir -p build/usr/share/doc/$(PROGRAM)  
 	cp $(PROGRAM) build/usr/bin/
+	cp README.md build/usr/share/doc/$(PROGRAM) 
 	cp src/man/$(PROGRAM).hlp build/usr/share/man
 	cp src/ipkg/$(PROGRAM).csv build/usr/share/ipkg
-	cp data/*.gz build/usr/share/vidplay  
+	cp data/*.gz build/usr/share/$(PROGRAM)
 	cd $(HOMEDIR) && cat $(HOMEDIR_PROGRAM)/src/man/$(PROGRAM).md | md2hlp.py > $(HOMEDIR_PROGRAM)/build/usr/share/man/$(PROGRAM).hlp  
 	cd build && tar -c * > ../$(PROGRAM).tar && cd ..
 	filepack  $(PROGRAM).tar $(PROGRAM).pkg
