@@ -9,7 +9,7 @@ PROGRAM=vidplay
 LDFILES=src/$(PROGRAM)_cc65.s
 SOURCE=src/vidplay.c
 ASFLAGS=-R -v -cc 
-
+HOMEDIR=/home/travis/bin/
 
 SOURCE=$(PROGRAM)
 
@@ -18,8 +18,6 @@ vidplay.o:  src/$(PROGRAM).asm
 	$(AS)  $(ASFLAGS) src/$(PROGRAM).asm -o src/$(PROGRAM).o
 	$(CO) src/$(PROGRAM).o -o src/$(PROGRAM)_cc65.s
 	$(CC) $(CFLAGS) -o $(PROGRAM) $(LDFILES) src/vidplay.c
-
-
 
 test:
 	mkdir -p build/usr/bin/
