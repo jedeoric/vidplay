@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oric-software/vidplay.svg?branch=master)](https://travis-ci.org/oric-software/vidplay)
+
 vidplay : a video player for the oric
 
 
