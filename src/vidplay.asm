@@ -1,7 +1,7 @@
 
 
-#include "../telemon/src/include/telemon.h"
-#include "../telemon/src/include/macro.h"
+#include "../orix/src/include/orix.h"
+#include "../orix/src/include/macro.h"
 ; ----------------------------------------------------------------------------
 
 #define PTR_READ_DEST $2c
