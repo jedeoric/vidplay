@@ -25,7 +25,8 @@ test:
 	mkdir -p build/usr/share/man
 	mkdir -p build/usr/share/ipkg
 	mkdir -p build/usr/share/$(PROGRAM)
-	mkdir -p build/usr/share/doc/$(PROGRAM)  
+	mkdir -p build/usr/share/doc/$(PROGRAM)
+	pwd		
 	cp $(PROGRAM) build/usr/bin/
 	cp README.md build/usr/share/doc/$(PROGRAM) 
 	cp src/man/$(PROGRAM).hlp build/usr/share/man
